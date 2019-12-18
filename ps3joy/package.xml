@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>ps3joy</name>
   <version>1.13.0</version>
@@ -13,7 +15,7 @@
     so that it shows up as a normal joystick.
   </description>
 
-  <maintainer email="jbo@jhu.edu">Jonathan Bohren</maintainer>
+  <maintainer email="jwhitley@autonomoustuff.com">Joshua Whitley</maintainer>
   <author>Blaise Gassend</author>
   <author>pascal@pabr.org</author>
   <author>Melonee Wise</author>
@@ -24,13 +26,12 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   
-  <depend>diagnostic_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>rospy</depend>
-  <depend>rosgraph</depend>
-  <depend>libusb-dev</depend>
-  <depend>joystick</depend>
   <depend>bluez</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>joystick</depend>
+  <depend>libusb-dev</depend>
   <depend>python-bluez</depend>
-
+  <depend>rosgraph</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
 </package>

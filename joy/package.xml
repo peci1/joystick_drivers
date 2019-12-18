@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>joy</name>
   <version>1.13.0</version>
@@ -11,22 +13,22 @@
     joystick's buttons and axes.
   </description>
 
-  <maintainer email="jbo@jhu.edu">Jonathan Bohren</maintainer>
+  <url type="website">http://www.ros.org/wiki/joy</url>
+  <url type="development">https://github.com/ros-drivers/joystick_drivers</url>
+  <url type="bugtracker">https://github.com/ros-drivers/joystick_drivers/issues</url>
+
+  <maintainer email="jwhitley@autonomoustuff.com">Joshua Whitley</maintainer>
   <author>Morgan Quigley</author>
   <author>Brian Gerkey</author>
   <author>Kevin Watts</author>
   <author>Blaise Gassend</author>
 
-  <url type="website">http://www.ros.org/wiki/joy</url>
-  <url type="development">https://github.com/ros-drivers/joystick_drivers</url>
-  <url type="bugtracker">https://github.com/ros-drivers/joystick_drivers/issues</url>
-
   <buildtool_depend>catkin</buildtool_depend>
   
-  <depend>roscpp</depend>
   <depend>diagnostic_updater</depend>
-  <depend>sensor_msgs</depend>
   <depend>joystick</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
 
   <test_depend>rosbag</test_depend>
 

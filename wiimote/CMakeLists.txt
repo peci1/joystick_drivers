@@ -1,4 +1,3 @@
-# http://ros.org/doc/groovy/api/catkin/html/user_guide/supposed.html
 cmake_minimum_required(VERSION 2.8.3)
 project(wiimote)
 
@@ -14,9 +13,17 @@ set(CMAKE_EXE_LINKER_FLAGS "-pie -z noexecstack -z relro -z now")
 # Flags shared libraries
 set(CMAKE_SHARED_LINKER_FLAGS "-z noexecstack -z relro -z now ${CMAKE_SHARED_LINKER_FLAGS}")
 
-# Load catkin and all dependencies required for this package
-set(CATKIN_DEPS geometry_msgs sensor_msgs std_msgs std_srvs rospy roscpp roslib genmsg)
-find_package(catkin REQUIRED ${CATKIN_DEPS} roslint)
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  message_generation
+  roscpp
+  roslib
+  roslint
+  rospy
+  sensor_msgs
+  std_msgs
+  std_srvs
+)
 
 catkin_python_setup()
 
@@ -24,30 +31,23 @@ catkin_python_setup()
 add_message_files(
   DIRECTORY msg
   FILES
-  IrSourceInfo.msg
-  State.msg
-  TimedSwitch.msg)
+    IrSourceInfo.msg
+    State.msg
+    TimedSwitch.msg
+)
 
-generate_messages(DEPENDENCIES geometry_msgs std_msgs sensor_msgs)
+generate_messages(
+  DEPENDENCIES
+    geometry_msgs
+    sensor_msgs
+    std_msgs
+)
 
 # ROS Lint the code
 roslint_cpp()
 #roslint_python()  # TODO(jbohren): ROS Lint the Python code
-roslint_add_test()
 
-###################################
-## catkin specific configuration ##
-###################################
-## The catkin_package macro generates cmake config files for your package
-## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if you package contains header files
-## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
-## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-  INCLUDE_DIRS include
-  CATKIN_DEPENDS ${CATKIN_DEPS}
-)
+catkin_package()
 
 ## Specify additional locations of header files
 include_directories(
@@ -75,10 +75,14 @@ install(DIRECTORY launch/
 # Install targets
 install(PROGRAMS nodes/feedbackTester.py  nodes/wiimote_node.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-  )
+)
 ## Mark executables and/or libraries for installation
 install(TARGETS wiimote_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+if(CATKIN_ENABLE_TESTING)
+  roslint_add_test()
+endif()
